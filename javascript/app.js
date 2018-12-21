@@ -75,31 +75,44 @@ function checkLetter (button){
     return letter;    
 }
 function missedGuesses (letter){
+    
     if (letter === null) {
         heart[missed].src = "images/lostHeart.png";
         missed++;
-        console.log(missed);
         }
 }
+function endScreen (game){
+    screen.className = game;
+    return screen;
+};
 function checkWin (score){
     
     let missed = score;
+    let endGame = "";
     const li = document.querySelectorAll('.letter').length;
     if (li === 0 && missed != 5){
-        screen.className = "win";
+        endGame = "win";
+        setTimeout(endScreen (endGame), 3000);
         restart ();
     }else if (missed === 5) {
-        screen.className = "lose";
+        endGame = "lose";
+        setTimeout(endScreen (endGame), 3000);
         restart ();
     }
    
 }
-
-function startGame() {
-    
+function startGame(){
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
+}
+
+startButton.addEventListener('click', (e) => {
+    const startScreen =  document.querySelector('#overlay');
+    startScreen.style.display = 'none';
+    startGame();
     
-    document.addEventListener('keydown', (e) => {
+});
+
+document.addEventListener('keydown', (e) => {
         
         for (var i = 0; i < button.length; i++){
             if (button[i].innerHTML === e.key) {
@@ -112,11 +125,10 @@ function startGame() {
         missedGuesses(letterFound);
 
         checkWin(missed);
-    });  
-}
+    }); 
 
 function restart () {
-    
+        
     screen.style.display = "flex";
     buttonMain.innerHTML = "Restart";
     missed = 0;
@@ -137,18 +149,7 @@ function restart () {
         button[i].className =  "not-chosen";
         button[i].disabled  =  false;
     }
-
 }
-
-
-startButton.addEventListener('click', (e) => {
-    const startScreen =  document.querySelector('#overlay');
-    startScreen.style.display = 'none';
-    startGame();
-    
-});
-
-
 
     
 
