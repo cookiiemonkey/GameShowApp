@@ -6,11 +6,11 @@ const button = document.querySelectorAll('.keyrow button');
 const screen = document.querySelector('.start');
 const buttonMain = document.querySelector('.btn__reset');
 const phrases = 
-    ['pompoen', 
-     'koelheid', 
-     'stinkdier', 
+    ['pompoen is lekker', 
+     'koelheid is cool', 
+     'stinkdier stinkt', 
      'facebook', 
-     'lasagna',];
+     'lasagna is pasta',];
 
 let missed = 0;
 let letterFound = "";
@@ -54,7 +54,7 @@ function addPhraseToDisplay (arr){
         if (arr[i] != " ") {
             li.className = "letter";
         }else {
-            li.textContent = "-";
+            li.className = "space";
         }
     }
 }
