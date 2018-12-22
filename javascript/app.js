@@ -81,29 +81,25 @@ function missedGuesses (letter){
         missed++;
         }
 }
-function endScreen (game){
-    screen.className = game;
-    return screen;
-};
+
 function checkWin (score){
     
     let missed = score;
-    let endGame = "";
     const li = document.querySelectorAll('.letter').length;
     if (li === 0 && missed != 5){
-        endGame = "win";
-        setTimeout(endScreen (endGame), 3000);
+        screen.className = "win";
         restart ();
     }else if (missed === 5) {
-        endGame = "lose";
-        setTimeout(endScreen (endGame), 3000);
+        screen.className = "lose";
         restart ();
     }
    
 }
+
 function startGame(){
     addPhraseToDisplay(getRandomPhraseAsArray(phrases));
 }
+
 
 startButton.addEventListener('click', (e) => {
     const startScreen =  document.querySelector('#overlay');
@@ -112,20 +108,23 @@ startButton.addEventListener('click', (e) => {
     
 });
 
-document.addEventListener('keydown', (e) => {
+
+for (var i = 0; i < button.length; i++) {
+    
+    button[i].addEventListener("click", function(e) {
+        const clickedButton = e.target;
+         clickedButton.className = "chosen";
+         clickedButton.disabled = true;
         
-        for (var i = 0; i < button.length; i++){
-            if (button[i].innerHTML === e.key) {
-                button[i].className = "chosen";
-                button[i].disabled = true;
-            }
-        }
+        console.log(clickedButton.innerHTML);
         
-        letterFound = checkLetter(e.key);
+        letterFound = checkLetter(clickedButton.innerHTML);
         missedGuesses(letterFound);
 
         checkWin(missed);
-    }); 
+    })
+};
+
 
 function restart () {
         

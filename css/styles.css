@@ -80,7 +80,7 @@ button {
   font-size: var(--font-size-medium);
   height: 65px;
   width: 65px;
-  padding: 20px 1px 0 1px;
+  padding: 35px 1px 0 1px;
   margin-right: 2px;
   color: transparent;
   background: var(--color-neutral-light);
@@ -88,14 +88,18 @@ button {
 }
 
 .space {
+  visibility: hidden;
   width: 15px;
 }
 
 .show {
   color: #000;
   background-color: #00ff23;
-  font-size: 3em; 
-  padding: 0 5px 16px 1px;
+  border-radius: 5px;
+  font-size: var(--font-size-large);
+  height: 65px;
+  width: 65px;
+  margin-right: 3px;
   -ms-animation: wiggle 1000ms;
   -webkit-animation: wiggle 1000ms;
 }
